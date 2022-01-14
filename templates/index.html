@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>NFTRank</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords"
+        content="eventstar, goldstar, events, listings, tickets, deals, concerts, music, entertainment, discounts, free, comps, sports, nightlife, comedy">
+    <meta name="description" content="Find awesome discounted and free concerts, entertainment, and events in the US">
+    <link rel="icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+
+<body>
+    <div id="container">
+        <form id="form" action="/results" method="post">
+            <div class="form-group">
+                <h1>NFTRank</h1>
+            </div>
+            
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control input-lg" id="collection" name="collection" placeholder="collection">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control input-lg" id="limit" name="limit" placeholder="limit">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control input-lg" id="site" name="site" placeholder="site">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="button" id="btnGo" class="btn btn-lg btn-success" value="GO!">
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+       $(function () {
+            $('#btnGo').on('click', function () {
+                $('#cityName').val($('#city').find('option:selected').text());
+                $('#form').submit();
+            });
+        });
+    </script>
+</body>
