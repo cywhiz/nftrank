@@ -2,21 +2,20 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-url = 'https://shroomstopia.io/rarity'
-page = requests.get(url)
-soup = BeautifulSoup(page.text, 'html.parser')
-nft = soup.find_all('div', class_='nft')
+collection = 'shrooms'
+url = 'https://moonrank.app/mints/' + collection
+items = requests.get(url).json()
 
 data = {}
 data['items'] = []
 
-for row in nft:
+for item in items['mints']:
     data['items'].append({
-        'rank': row.p.text.replace('Ranked #', ''),
-        'id': row.h6.text,
-        'image': row.find('img')['data-src'],
-        'link': url + row.find('a')['href']
+        'rank': item['rank'],
+        'id': item['name'],
+        'image': item['image'],
+        'link': 'https://moonrank.app/collection/' + collection + '/' + item['mint']
     })
 
-with open('shrooms.json', 'w') as f:
+with open(collection + '.json', 'w') as f:
     json.dump(data, f)

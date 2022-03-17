@@ -2,19 +2,20 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-url = 'https://moonrank.app/mints/bunny_warriors'
-resp = requests.get(url).json()
+collection = 'bunny_warriors'
+url = 'https://moonrank.app/mints/' + collection
+items = requests.get(url).json()
 
 data = {}
 data['items'] = []
 
-for row in resp['mints']:
+for item in items['mints']:
     data['items'].append({
-        'rank': row['rank'],
-        'id': row['name'],
-        'image': row['image'],
-        'link': 'https://moonrank.app/collection/bunny_warriors/' + row['mint']
+        'rank': item['rank'],
+        'id': item['name'],
+        'image': item['image'],
+        'link': 'https://moonrank.app/collection/' + collection + '/' + item['mint']
     })
 
-with open('bunny.json', 'w') as f:
+with open(collection + '.json', 'w') as f:
     json.dump(data, f)
